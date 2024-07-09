@@ -35,7 +35,7 @@ console.log(catalogo.obtenerProductos());
 // Pedir al usuario que ingrese el nombre de la divisa
 const nombreDivisa = prompt("Ingrese el nombre de la divisa:");
 
-// Buscar la divisa en el arreglo
+// Buscar la divisa 
 const divisaSeleccionada = divisas.find(divisa => divisa.nombre.toLowerCase() === nombreDivisa.toLowerCase());
 
 // Mostrar la información en un alert
@@ -43,4 +43,17 @@ if (divisaSeleccionada) {
     alert(`Nombre: ${divisaSeleccionada.nombre}\nPrecio de compra: ${divisaSeleccionada.precioCompra}\nPrecio de venta: ${divisaSeleccionada.precioVenta}`);
 } else {
     alert(`No se encontró la divisa "${nombreDivisa}"`);
+}
+
+if (divisaSeleccionada) {
+    // Solicitar al usuario la cantidad de pesos ARG que desea convertir
+    const cantidadPesosARG = parseFloat(prompt(`Ingrese la cantidad de pesos ARG que desea convertir a ${divisaSeleccionada.nombre}:`));
+
+    // Calcular cuántas unidades de la divisa puede comprar
+    const unidadesDivisa = cantidadPesosARG / divisaSeleccionada.precioVenta;
+
+    // Mostrar mensaje con la cantidad de divisas compradas
+    alert(`Usted compraria ${unidadesDivisa.toFixed(2)} ${divisaSeleccionada.nombre}`);
+} else {
+    alert(`No se encontró la divisa "${nombreDivisa}" en el listado.`);
 }
