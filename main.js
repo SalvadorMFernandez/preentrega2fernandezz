@@ -1,33 +1,43 @@
 const divisas = [
-    {id:1, nombre:"Dolares", precioCompra: 1400, precioVenta: 1420},
-    {id:2, nombre:"Euros", precioCompra: 1505, precioVenta: 1538},
-    {id:3, nombre:"Reales", precioCompra: 247.75, precioVenta: 268.75},
-    {id:4, nombre:"Uruguayos", precioCompra: 19.75, precioVenta: 22.50},
-    ]//productos INICIALES
+    {id: 1, nombre: "Dolares", precioCompra: 1400, precioVenta: 1420},
+    {id: 2, nombre: "Euros", precioCompra: 1505, precioVenta: 1538},
+    {id: 3, nombre: "Reales", precioCompra: 247.75, precioVenta: 268.75},
+    {id: 4, nombre: "Uruguayos", precioCompra: 19.75, precioVenta: 22.50},
+];
 
 class Productos {
-    constructor(poductos) {
-        this.items = divisas;
+    constructor(productos) {
+        this.items = productos || []; // Inicializar items con el array de productos si se proporciona
     }
-    agregarProducto(nombreP, precioCompraP, precioVentaP) { //Bitcoin, 56500, 57500 
-    const producto = {id:this.generarId(), nombre:nombreP, preciocompra:precioCompraP, precioventa:precioVentaP}; //Crear un nuevo objeto Producto
-    this.items.push(producto); //Agregando al array items de la Clase Producto, el nuevo objeto Producto creado
-    console.log("Producto agregado")    
+
+    agregarProducto(nombreP, precioCompraP, precioVentaP) {
+        const producto = {id: this.generarId(), nombre: nombreP, precioCompra: precioCompraP, precioVenta: precioVentaP};
+        this.items.push(producto);
+        console.log("Producto agregado:", producto);
     }
-    buscarProducto(id){
-    return this.items.find(item=> item.id == id)
+
+    buscarProducto(id) {
+        return this.items.find(item => item.id === id);
     }
-    obtenerProductos(){
+
+    obtenerProductos() {
         return this.items;
     }
-    totalProductos(){
-        return this.items.lenght;
+
+    totalProductos() {
+        return this.items.length; // Corregir el método para obtener la longitud del array
     }
-    generarId(){
-        return this.items.lenght + 1; //cantidad de productos de mi array + 1
+
+    generarId() {
+        return this.items.length + 1; // Corregir la obtención del ID
     }
 }
-const catalogo = new Productos(divisas)
+
+const catalogo = new Productos(divisas);
+console.log(catalogo.obtenerProductos());
+
+// Ejemplo de uso de la clase Productos
+catalogo.agregarProducto("Bitcoin", 56500, 57500);
 console.log(catalogo.obtenerProductos());
 
 
